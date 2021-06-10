@@ -1,0 +1,32 @@
+<div id="sidebar" [class]="ocultar">
+    <div class="inner">
+        <!-- Search -->
+        <section id="search" class="alt">
+            <form method="post" action="#">
+                <input type="text" name="query" id="query" placeholder="Search" />
+            </form>
+        </section>
+
+        <!-- Menu -->
+        <nav id="menu">
+            <header class="major">
+                <h2>Menu</h2>
+            </header>
+            <ul>
+                <li><a routerLink="home" routerLinkActive="active">Home</a></li>
+                <!-- <li>
+                    <a routerLink="digimonds" routerLinkActive="active">Digimons</a>
+                </li>
+                <li>
+                    <a routerLink="calculator" routerLinkActive="active">Calculadora</a>
+                </li>
+                <li><a routerLink="message" routerLinkActive="active">Mensaje</a></li> -->
+
+            </ul>
+        </nav>
+
+
+    </div>
+
+    <a class="toggle" (click)="ocultarMenu(!mostrar)"></a>
+</div>

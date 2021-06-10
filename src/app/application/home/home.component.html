@@ -1,0 +1,108 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="card stylesMiniCard p-0">
+              <div class="card-header text-center text-white bg-primary">
+                <b style="color: white">Lectura de datos</b>
+              </div>
+              <div class="card-body" id="bodyDataFire">
+                <!-- {{ mcu }} -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-4 mb-2">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card stylesMiniCard">
+                <div class="card-header text-center text-white bg-primary">
+                  <b style="color: white">Ventiladores</b>
+                </div>
+                <div class="card-body">
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <button class="btn p-1" type="button" (click)="onClickEncenderVentilador()">
+                      <img width="50%" src="assets/images/power.svg" alt="" />
+                    </button>
+                    <button class="btn p-1" type="button" (click)="onClickApagarVentilador()">
+                      <img width="50%" src="assets/images/poweroff.svg" alt=""/>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-2">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card stylesMiniCard">
+                <div class="card-header text-center text-white bg-primary">
+                  <b style="color: white">Bombillos</b>
+                </div>
+                <div class="card-body">
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <button class="btn" type="button" (click)="onClickEncenderBombillo()">
+                      <img width="50%" src="assets/images/power.svg" alt="" />
+                    </button>
+                    <button class="btn" type="button" (click)="onClickApagarBombillo()">
+                      <img width="50%" src="assets/images/poweroff.svg" alt=""/>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-2">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card stylesMiniCard">
+                <div class="card-header text-center text-white bg-primary">
+                  <b style="color: white">Visor de intruso</b>
+                </div>
+                <div class="card-body text-center">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label for="">{{labelIntruso}}</label>
+                    </div>
+                    <div class="col-md-12">
+                      <img class="{{animacionAlerta}}" id="imgIntruso" width="30%" src="{{imgSrcIntruso}}" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-2">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card stylesMiniCard">
+                <div class="card-header text-center text-white bg-primary">
+                  <b style="color: white">Visor de Incendios</b>
+                </div>
+                <div class="card-body text-center">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label for="">{{labelIncendio}}</label>
+                    </div>
+                    <div class="col-md-12">
+                      <img class="{{animacionAlertaIncendio}}" id="imgIncendio" width="30%" src="{{imgSrcIncendio}}" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
