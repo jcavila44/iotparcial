@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   public imgSrcIncendio: any = '';
   public mostrarAlertaIntruso: any = 0;
   public mostrarAlertaIncendio: any = 0;
+  public estadoVentilador: any;
 
 
   constructor(
@@ -46,7 +47,7 @@ export class HomeComponent implements OnInit {
           this.labelIntruso = 'Hay un intruso!';
           this.imgSrcIntruso = 'assets/images/robberon.svg';
           this.animacionAlerta = 'corazon';
-          if (this.mostrarAlertaIntruso !== 1) {
+          if (this.mostrarAlertaIntruso === 0) {
             this.mostrarAlertaIntruso = 1;
             Swal.fire({
               title: 'Hay un intruso!',
@@ -60,6 +61,7 @@ export class HomeComponent implements OnInit {
               if (result.isConfirmed) {
                 this.onClickEncenderAlarma();
               } else {
+                this.onClickApagarAlarma();
                 Swal.close();
               }
             });
@@ -70,12 +72,12 @@ export class HomeComponent implements OnInit {
           this.imgSrcIntruso = 'assets/images/robber.svg';
           this.animacionAlerta = '';
           this.mostrarAlertaIntruso = 0;
-        } else if (element.key === 'gas' && Number(element.value) >= 15) {
+        } else if (element.key === 'gas' && Number(element.value) >= 25) {
           this.labelIncendio = 'Hay un incendio!';
           this.imgSrcIncendio = 'assets/images/fireon.svg';
           this.animacionAlertaIncendio = 'corazon';
 
-          if (this.mostrarAlertaIncendio !== 1) {
+          if (this.mostrarAlertaIncendio === 0) {
             this.mostrarAlertaIncendio = 1;
             Swal.fire({
               title: 'Hay un posible incendio!',
@@ -95,11 +97,15 @@ export class HomeComponent implements OnInit {
           }
 
 
-        } else if (element.key === 'gas' && Number(element.value) < 15) {
+        } else if (element.key === 'gas' && Number(element.value) < 25) {
           this.labelIncendio = 'No hay incendios';
           this.imgSrcIncendio = 'assets/images/fireoff.svg';
           this.animacionAlertaIncendio = '';
           this.mostrarAlertaIncendio = 0;
+        }
+
+        if (element.key === 'fan') {
+          this.estadoVentilador = element.value;
         }
 
         this.mcu += `<b>• ${element.key}:</b> ${element.value} <br/>`;
@@ -107,7 +113,7 @@ export class HomeComponent implements OnInit {
 
       const bodyDataFire = document.getElementById('bodyDataFire');
       if (bodyDataFire) { bodyDataFire.innerHTML = ''; }
-      if (bodyDataFire) { bodyDataFire.innerHTML = this.mcu };
+      if (bodyDataFire) { bodyDataFire.innerHTML = this.mcu; }
     });
   }
 
@@ -115,8 +121,11 @@ export class HomeComponent implements OnInit {
 
   onClickEncenderVentilador() {
 
-    this.generarAlertGestion('success', 'Ventilador encendido');
-    this.mcuService.PowerOnFan();
+    if (Number(this.estadoVentilador) === 0) {
+      this.generarAlertGestion('success', 'Ventilador encendido');
+      this.mcuService.PowerOnFan();
+    }
+
   }
 
   onClickApagarVentilador() {
@@ -143,6 +152,14 @@ export class HomeComponent implements OnInit {
 
     this.generarAlertGestion('success', 'Alarma Encendida');
     this.mcuService.PowerOnBuzzer();
+
+  }
+
+
+  onClickApagarAlarma() {
+
+    this.generarAlertGestion('success', 'Alarma Apagada');
+    this.mcuService.PowerOffBuzzer();
 
   }
 

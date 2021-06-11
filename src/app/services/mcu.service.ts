@@ -58,6 +58,12 @@ export class McuService {
     });
   }
 
+  PowerOffBuzzer() {
+    return this.db.object('/').update({
+      buzzer: '0'
+    });
+  }
+
 
 
 
